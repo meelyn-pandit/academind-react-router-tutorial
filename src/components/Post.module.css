@@ -23,7 +23,7 @@
   font-style: italic;
 }
 
-@keyframes animate-in {
+@keyframes animate-in { /*fade in effect*/
   from {
     opacity: 0;
     transform: translateY(1rem);
