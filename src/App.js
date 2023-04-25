@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css';
+import classes from './App.css';
 // import Post from './components/Post'
 import PostsList from './components/PostsList'
 import MainHeader from './components/MainHeader'
@@ -17,8 +17,8 @@ function App() { // must wrap jsx in a single html component (div, main, etc.)
 
   return (
     <>
-    <MainHeader onCreatePost={showModalHandler}/>
-      <main>
+    <MainHeader className={classes.App} onCreatePost={showModalHandler}/>
+      <main className={classes.App}>
       <PostsList isPosting={modalIsVisible}
         onStopPosting={hideModalHandler}/>
     </main>

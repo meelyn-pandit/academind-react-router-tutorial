@@ -6,9 +6,19 @@ import Modal from './Modal'
 import classes from './PostsList.module.css'
 
 export default function PostsList({isPosting, onStopPosting}) { // example of destructured props
+  // fetch('http://localhost:8080/posts').then(response => response.json()).then(data => {
+  //   setPosts(data.posts)
+  // }) this code would cause an infinite loop
   const [posts, setPosts] = useState([]) // used for dynamic rendering of Posts component
 
   function addPostHandler(postData) {
+    fetch('http://localhost:8080/posts', {
+      method: 'POST', // type of request
+      body: JSON.stringify(postData), // data that we are sending
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     // setPosts([postData, ...posts]) //...spread operator, used to add to existing array, in this case, posts
     // updating arrays is not ideal because you are updating state. if new state depends on old state, use a function instead
     setPosts((existingPosts) => [postData, ...existingPosts])
