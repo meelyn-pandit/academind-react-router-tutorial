@@ -5,6 +5,7 @@ import classes from './PostDetails.module.css'
 
 export default function PostDetails() {
   const post = useLoaderData()
+  console.log('Frontend Post ', post)
 
   if (!post) {
     return (
@@ -32,7 +33,10 @@ export default function PostDetails() {
 }
 
 export async function loader({params}) {
+  console.log('Params ID', params)
   const response = await fetch('http://localhost:8080/posts/' + params.id)
+  console.log('Posts Response ', response)
   const resData = await response.json()
+  console.log('ResData ', resData)
   return resData.post
 }
