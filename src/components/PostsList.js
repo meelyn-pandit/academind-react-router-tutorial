@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react'
 
 import Post from './Post'
-import NewPost from './NewPost'
-import Modal from './Modal'
 import classes from './PostsList.module.css'
 
-export default function PostsList({isPosting, onStopPosting}) { // example of destructured props
-  // fetch('http://localhost:8080/posts').then(response => response.json()).then(data => {
-  //   setPosts(data.posts)
-  // }) this code would cause an infinite loop
+export default function PostsList() { 
   const [posts, setPosts] = useState([]) // used for dynamic rendering of Posts component
   const [isFetching, setIsFetching] = useState(false)
 
@@ -38,25 +33,8 @@ export default function PostsList({isPosting, onStopPosting}) { // example of de
     setPosts((existingPosts) => [postData, ...existingPosts])
   }
 
-  // let modalContent;
-
-  // if (modalIsVisible) {
-  //   modalContent = (<Modal onClose={hideModalHandler}>
-  //     <NewPost 
-  //       onBodyChange={bodyChangeHandler}
-  //       onAuthorChange={authorChangeHandler}
-  //     />
-  //   </Modal>
-  //   )
-  // }
-
   return(
     <>
-    {isPosting && (  
-      <Modal onClose={onStopPosting}>
-        <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
-     </Modal>
-    )}
     {!isFetching && posts.length > 0 && (
       <ul className={classes.posts}>
         {posts.map((post) => (
